@@ -20,9 +20,10 @@ What I've Done:
 
 - [X] `isDivisionByZero`: Validation to prevent division by zero.
   
+- [X] History of all performed operations.
+
 ### Additional Features to Consider:
 
-- [ ] History of all performed operations.
 - [ ] Improved error handling and user input validation.
 - [ ] Implementation of shortcut keys for common actions.
 - [ ] UI enhancements, such as support for themes or customization options.

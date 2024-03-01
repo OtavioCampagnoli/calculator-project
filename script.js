@@ -10,6 +10,7 @@ function appendToDisplay(value) {
 function clearDisplay() {
   document.getElementById("display").value = null;
   document.getElementById("display").ariaPlaceholder = "0";
+  clearHistory();
 }
 
 function backspace() {
@@ -71,7 +72,34 @@ function haveANumberFirst() {
 }
 
 function calculate() {
-  let displayValue, firstExpression, secondExpression, operatorValue, calc;
+  let calc, expression, result;
+  calc = mountExpression();
+  if (calc == undefined) {
+    updateValueScreen(0);
+  } else {
+    expression = calc + " = ";
+    result = eval(calc);
+    expression += result;
+    saveTheHistory(expression);
+    updateValueScreen(result);
+  }
+}
+
+function isDivisionByZero(numerator, denominator, operator) {
+  let result;
+  result = false;
+  if ((numerator == 0 || denominator == 0) && operator == "/") {
+    result = true;
+  }
+  return result;
+}
+
+function mountExpression() {
+  let displayValue,
+    firstExpression,
+    secondExpression,
+    operatorValue,
+    expression;
   displayValue = getDisplayValue();
   const displayValueList = displayValue.split("");
   firstExpression = null;
@@ -93,23 +121,64 @@ function calculate() {
   firstExpression = firstExpression.replaceAll("null", "");
   secondExpression = secondExpression.replaceAll("null", "");
 
-  if(isDivisionByZero(firstExpression, secondExpression, operatorValue)) {
+  if (isDivisionByZero(firstExpression, secondExpression, operatorValue)) {
     alert("You can't divide by zero!");
-    updateValueScreen(0);
+  } else {
+    expression = firstExpression + " " + operatorValue + " " + secondExpression;
+    return expression;
   }
-  else {
-    calc = firstExpression + operatorValue + secondExpression;
-    calc = eval(calc);
-    updateValueScreen(calc);
-  }
-
 }
 
-function isDivisionByZero(numerator, denominator, operator) {
-  let result;
+// History of all performed operations.
+
+function showTheHistory() {
+  let displayHistory;
+  displayHistory = getDisplayHistory();
+}
+
+function saveTheHistory(expression) {
+  let currentHistory;
+  currentHistory = getValueHistory();
+  if (haveAHistory() == true) {
+    currentHistory += " | " + expression;
+    updateValueHistory(currentHistory);
+    showTheHistory();
+  } else {
+    currentHistory = expression;
+    updateValueHistory(currentHistory);
+    showTheHistory();
+  }
+}
+
+function haveAHistory() {
+  let result, valueHistory;
   result = false;
-  if ((numerator == 0 || denominator == 0) && operator == "/") {
+  valueHistory = getValueHistory();
+  if (valueHistory != null && valueHistory != undefined && valueHistory != "") {
     result = true;
   }
   return result;
+}
+
+function getValueHistory() {
+  let valueHistory;
+  valueHistory = getDisplayHistory().value;
+  return valueHistory;
+}
+
+function getDisplayHistory() {
+  let displayHistory;
+  displayHistory = document.getElementById("display-history");
+  return displayHistory;
+}
+
+function clearHistory() {
+  document.getElementById("display-history").value = "";
+}
+
+function updateValueHistory(currentHistory) {
+  let valueHistory;
+  valueHistory = getValueHistory();
+  document.getElementById("display-history").value = currentHistory;
+  updateValueScreen(0);
 }
