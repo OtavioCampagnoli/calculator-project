@@ -1,4 +1,4 @@
-What I've Done:
+### What I've Done:
 
 - [X] `appendToDisplay(value)`: Add the specified value to the calculator display, checking if there's already a number before or if the value is not an operator.
 
