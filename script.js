@@ -93,7 +93,23 @@ function calculate() {
   firstExpression = firstExpression.replaceAll("null", "");
   secondExpression = secondExpression.replaceAll("null", "");
 
-  calc = firstExpression + operatorValue + secondExpression;
-  calc = eval(calc);
-  updateValueScreen(calc);
+  if(isDivisionByZero(firstExpression, secondExpression, operatorValue)) {
+    alert("You can't divide by zero!");
+    updateValueScreen(0);
+  }
+  else {
+    calc = firstExpression + operatorValue + secondExpression;
+    calc = eval(calc);
+    updateValueScreen(calc);
+  }
+
+}
+
+function isDivisionByZero(numerator, denominator, operator) {
+  let result;
+  result = false;
+  if ((numerator == 0 || denominator == 0) && operator == "/") {
+    result = true;
+  }
+  return result;
 }

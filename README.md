@@ -18,9 +18,10 @@ What I've Done:
 
 - [X] `calculate()`: Perform the calculation based on the current content of the calculator display, considering the present mathematical expression.
 
+- [X] `isDivisionByZero`: Validation to prevent division by zero.
+  
 ### Additional Features to Consider:
 
-- [ ] Validation to prevent division by zero.
 - [ ] History of all performed operations.
 - [ ] Improved error handling and user input validation.
 - [ ] Implementation of shortcut keys for common actions.
