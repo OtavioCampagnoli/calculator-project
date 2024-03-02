@@ -1,4 +1,4 @@
-### What I've Done:
+### What I've Done
 
 - [X]  Basic math operations like: sum, sub, division and multiplication;
 
@@ -6,9 +6,10 @@
 
 - [X] History of all performed operations.
 
-### Additional Features to Consider:
+- [X] Improved error handling and user input validation.
 
-- [ ] Improved error handling and user input validation.
+### Additional Features to Consider
+
 - [ ] Implementation of shortcut keys for common actions.
 - [ ] UI enhancements, such as support for themes or customization options.
 - [ ] Support for more advanced operations, such as square root, exponentiation, etc.
