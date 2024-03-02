@@ -1,25 +1,9 @@
 ### What I've Done:
 
-- [X] `appendToDisplay(value)`: Add the specified value to the calculator display, checking if there's already a number before or if the value is not an operator.
+- [X]  Basic math operations like: sum, sub, division and multiplication;
 
-- [X] `clearDisplay()`: Clear the calculator display, setting its value to null and the `ariaPlaceholder` attribute to "0".
+- [X] Backspace option;
 
-- [X] `backspace()`: Remove the last character from the calculator display.
-
-- [X] `getDisplayValue()`: Get the current value of the calculator display.
-
-- [X] `updateValueScreen(value)`: Update the value of the calculator display with the specified value.
-
-- [X] `alreadyHaveAnOperator(newValue)`: Check if there's already an operator in the calculator display before adding a new operator.
-
-- [X] `isOperator(value)`: Check if the specified value is a valid operator.
-
-- [X] `haveANumberFirst()`: Check if there's a number in the calculator display before adding an operator.
-
-- [X] `calculate()`: Perform the calculation based on the current content of the calculator display, considering the present mathematical expression.
-
-- [X] `isDivisionByZero`: Validation to prevent division by zero.
-  
 - [X] History of all performed operations.
 
 ### Additional Features to Consider:
