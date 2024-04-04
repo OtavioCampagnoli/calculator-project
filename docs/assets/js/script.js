@@ -1,3 +1,29 @@
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const action = this.dataset.action;
+    const value = this.dataset.value;
+
+    switch (action) {
+      case 'clear':
+        clearDisplay();
+        break;
+      case 'append':
+        appendToDisplay(value);
+        break;
+      case 'calculate':
+        calculate();
+        break;
+      case 'backspace':
+        backspace();
+        break;
+      default:
+        break;
+    }
+  });
+});
+
 function appendToDisplay(value) {
   if (haveANumberFirst() == true || isOperator(value) == false) {
     if (alreadyHaveAnOperator(value) == true) {

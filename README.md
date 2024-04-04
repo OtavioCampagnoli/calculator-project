@@ -8,6 +8,8 @@
 
 - [X] Improved error handling and user input validation.
 
+- [X] Fix to use for mobile devices.
+
 ### Additional Features to Consider
 
 - [ ] Implementation of shortcut keys for common actions.
