@@ -1,4 +1,5 @@
 const buttons = document.querySelectorAll("button");
+let isCalculated = false;
 
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
@@ -25,7 +26,15 @@ buttons.forEach((button) => {
 });
 
 function appendToDisplay(value) {
-  const displayValue = getDisplayValue();
+
+  if (isCalculated && isOperator(value)) {
+    isCalculated = false;
+  }
+
+  else if (isCalculated && !isOperator(value)) {
+    clearDisplay();
+    isCalculated = false;
+  }
 
   if (!haveANumberFirst() && !isOperator(value)) {
     clearDisplay();
@@ -41,7 +50,6 @@ function appendToDisplay(value) {
 function clearDisplay() {
   document.getElementById("display").value = null;
   document.getElementById("display").ariaPlaceholder = "0";
-  clearHistory();
 }
 
 function backspace() {
@@ -85,9 +93,9 @@ function calculate() {
   const expressionWithResult = `${expression} = ${result}`;
   saveTheHistory(expressionWithResult);
   updateValueScreen(result);
-}
 
-// Parte 2: Histórico e Expressões
+  isCalculated = true;
+}
 
 function isDivisionByZero(numerator, denominator, operator) {
   return (numerator == 0 || denominator == 0) && operator == "/";
@@ -125,9 +133,6 @@ function mountExpression() {
   return expression;
 }
 
-function showTheHistory() {
-  // Implementar a funcionalidade se necessário
-}
 
 function saveTheHistory(expression) {
   const currentHistory = haveAHistory() ? getValueHistory() + " | " + expression : expression;
