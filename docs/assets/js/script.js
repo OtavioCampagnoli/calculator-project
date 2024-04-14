@@ -25,12 +25,17 @@ buttons.forEach((button) => {
 });
 
 function appendToDisplay(value) {
-  if (haveANumberFirst() == true || isOperator(value) == false) {
-    if (alreadyHaveAnOperator(value) == true) {
-    } else {
-      document.getElementById("display").value += value;
-    }
+  const displayValue = getDisplayValue();
+
+  if (!haveANumberFirst() && !isOperator(value)) {
+    clearDisplay();
   }
+
+  if (isOperator(value) && alreadyHaveAnOperator()) {
+    return;
+  }
+
+  document.getElementById("display").value += value;
 }
 
 function clearDisplay() {
@@ -40,171 +45,112 @@ function clearDisplay() {
 }
 
 function backspace() {
-  let displayValue, listDisplay;
-  displayValue = getDisplayValue();
-  listDisplay = displayValue.split("");
-  listDisplay.pop();
-  displayValue = listDisplay.toString();
-  displayValue = displayValue.replaceAll(",", "");
+  let displayValue = getDisplayValue();
+  displayValue = displayValue.slice(0, -1);
   updateValueScreen(displayValue);
 }
 
 function getDisplayValue() {
-  const displayValue = document.getElementById("display").value;
-  return displayValue;
+  return document.getElementById("display").value;
 }
 
 function updateValueScreen(value) {
   document.getElementById("display").value = value;
 }
 
-function alreadyHaveAnOperator(newValue) {
-  let displayValueList, result;
-  result = false;
-  displayValueList = getDisplayValue().split("");
-  displayValueList.forEach((value) => {
-    if (isOperator(value) == true && isOperator(newValue) == true) {
-      result = true;
-      return false;
-    }
-  });
-  return result;
+function isOperator(value) {
+  const operators = ["+", "-", "*", "/"];
+  return operators.includes(value);
 }
 
-function isOperator(value) {
-  let result = false;
+function alreadyHaveAnOperator() {
+  const displayValue = getDisplayValue();
   const operators = ["+", "-", "*", "/"];
-  operators.forEach((operator) => {
-    if (operator == value) {
-      result = true;
-      return false;
-    }
-  });
-  return result;
+  return displayValue.split("").some(char => operators.includes(char));
 }
 
 function haveANumberFirst() {
-  let result, displayValueList;
-  result = false;
-  displayValueList = getDisplayValue().split("");
-  const firstDisplayValue = displayValueList[0];
-  if (firstDisplayValue == undefined || firstDisplayValue == null) {
-    result = false;
-  } else {
-    result = true;
-  }
-
-  return result;
+  const firstChar = getDisplayValue()[0];
+  return !isNaN(firstChar);
 }
 
 function calculate() {
-  let calc, expression, result;
-  calc = mountExpression();
-  if (calc == undefined) {
+  const expression = mountExpression();
+  if (!expression) {
     updateValueScreen(0);
-  } else {
-    expression = calc + " = ";
-    result = eval(calc);
-    expression += result;
-    saveTheHistory(expression);
-    updateValueScreen(result);
+    return;
   }
+
+  const result = eval(expression);
+  const expressionWithResult = `${expression} = ${result}`;
+  saveTheHistory(expressionWithResult);
+  updateValueScreen(result);
 }
 
+// Parte 2: Histórico e Expressões
+
 function isDivisionByZero(numerator, denominator, operator) {
-  let result;
-  result = false;
-  if ((numerator == 0 || denominator == 0) && operator == "/") {
-    result = true;
-  }
-  return result;
+  return (numerator == 0 || denominator == 0) && operator == "/";
 }
 
 function mountExpression() {
-  let displayValue,
-    firstExpression,
-    secondExpression,
-    operatorValue,
-    expression;
-  displayValue = getDisplayValue();
-  const displayValueList = displayValue.split("");
-  firstExpression = null;
-  secondExpression = null;
-  displayValueList.forEach((value) => {
-    if (firstExpression == undefined || firstExpression == null) {
-      firstExpression += value;
-    } else if (operatorValue != undefined || operatorValue != null) {
-      secondExpression += value;
-    } else if (isOperator(value) == true) {
-      operatorValue = value;
+  const displayValue = getDisplayValue();
+  const operators = ["+", "-", "*", "/"];
+  let expression = "";
+  let currentNumber = "";
+
+  for (let i = 0; i < displayValue.length; i++) {
+    const char = displayValue[i];
+
+    if (operators.includes(char)) {
+      if (currentNumber !== "") {
+        expression += currentNumber + " ";
+        currentNumber = "";
+      }
+      expression += char + " ";
     } else {
-      firstExpression += value;
+      currentNumber += char;
     }
-  });
-
-  firstExpression = firstExpression.toString().replaceAll(",", "");
-  secondExpression = secondExpression.toString().replaceAll(",", "");
-  firstExpression = firstExpression.replaceAll("null", "");
-  secondExpression = secondExpression.replaceAll("null", "");
-
-  if (isDivisionByZero(firstExpression, secondExpression, operatorValue)) {
-    alert("You can't divide by zero!");
-  } else {
-    expression = firstExpression + " " + operatorValue + " " + secondExpression;
-    return expression;
   }
+
+  if (currentNumber !== "") {
+    expression += currentNumber;
+  }
+
+  if (isDivisionByZero(expression.split(" ")[0], expression.split(" ")[2], expression.split(" ")[1])) {
+    alert("You can't divide by zero!");
+    return null;
+  }
+
+  return expression;
 }
 
-// History of all performed operations.
-
 function showTheHistory() {
-  let displayHistory;
-  displayHistory = getDisplayHistory();
+  // Implementar a funcionalidade se necessário
 }
 
 function saveTheHistory(expression) {
-  let currentHistory;
-  currentHistory = getValueHistory();
-  if (haveAHistory() == true) {
-    currentHistory += " | " + expression;
-    updateValueHistory(currentHistory);
-    showTheHistory();
-  } else {
-    currentHistory = expression;
-    updateValueHistory(currentHistory);
-    showTheHistory();
-  }
+  const currentHistory = haveAHistory() ? getValueHistory() + " | " + expression : expression;
+  updateValueHistory(currentHistory);
 }
 
 function haveAHistory() {
-  let result, valueHistory;
-  result = false;
-  valueHistory = getValueHistory();
-  if (valueHistory != null && valueHistory != undefined && valueHistory != "") {
-    result = true;
-  }
-  return result;
+  return !!getValueHistory();
 }
 
 function getValueHistory() {
-  let valueHistory;
-  valueHistory = getDisplayHistory().value;
-  return valueHistory;
+  return getDisplayHistory().value;
 }
 
 function getDisplayHistory() {
-  let displayHistory;
-  displayHistory = document.getElementById("display-history");
-  return displayHistory;
+  return document.getElementById("display-history");
 }
 
 function clearHistory() {
-  document.getElementById("display-history").value = "";
+  getDisplayHistory().value = "";
 }
 
 function updateValueHistory(currentHistory) {
-  let valueHistory;
-  valueHistory = getValueHistory();
-  document.getElementById("display-history").value = currentHistory;
+  getDisplayHistory().value = currentHistory;
   updateValueScreen(0);
 }
