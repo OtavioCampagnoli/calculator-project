@@ -10,7 +10,9 @@
 
 - [X] Fix to use for mobile devices;
 
-- [X] Refactored script.
+- [X] Refactored script (212 to 150 lines);
+
+- [X] Fix bug to add a number after calculate (Improving user experience).
 
 ### Additional Features to Consider
 
