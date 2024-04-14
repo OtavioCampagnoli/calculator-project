@@ -8,7 +8,9 @@
 
 - [X] Improved error handling and user input validation.
 
-- [X] Fix to use for mobile devices.
+- [X] Fix to use for mobile devices;
+
+- [X] Refactored script.
 
 ### Additional Features to Consider
 
