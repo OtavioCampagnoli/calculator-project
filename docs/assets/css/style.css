@@ -19,12 +19,15 @@
 .btn {
     width: 100%;
     margin-bottom: 5px;
+    font-weight: bold !important;
+    font-size: 18px !important;
 }
 
 
 #display {
     text-align: right;
     margin-top: 5%;
+    font-size: 18px;
 }
 
 @media (max-width: 300px) {
@@ -34,4 +37,19 @@
         opacity: 0.5;
     }
 
+}
+
+button {
+    text-align: center;
+    font-weight: bold;
+}
+
+.calculator-title {
+    font-weight: bold;
+    font-size: 22px;
+    font-style: italic;
+}
+
+input {
+    font-size: 18px !important;
 }
