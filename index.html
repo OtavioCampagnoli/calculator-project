@@ -11,6 +11,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
                 rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
 <body>
@@ -29,15 +31,15 @@
                                         </div>
                                         <div class="card-body">
                                                 <div class="row">
-                                                        <div class="col">
-                                                                <div class="input-group input-group-sm mb-3">
+                                                        <div class="col-9">
+                                                                <div class="input-group input-group-md">
                                                                         <div class="input-group-prepend">
                                                                                 <span class="input-group-text"
                                                                                         id="inputGroup-sizing-sm"
                                                                                         style="font-weight: bold;"><img
-                                                                                                src="docs/assets/images/history.png"
+                                                                                                src="./docs/assets/images/history.png"
                                                                                                 alt="History Icon"
-                                                                                                style="width: 16px; height: 16px; margin-right: 6px;">History</span>
+                                                                                                style="height: 16px; margin-right: 6px;">History</span>
                                                                         </div>
                                                                         <input id="display-history" type="text"
                                                                                 class="form-control"
@@ -45,6 +47,11 @@
                                                                                 aria-describedby="inputGroup-sizing-sm"
                                                                                 disabled style="font-weight: bold;">
                                                                 </div>
+                                                        </div>
+                                                        <div class="col-3">
+                                                                <button data-action="clearHistory" id="trash-history"
+                                                                        class="btn-danger btn">
+                                                                        <i class="fas fa-trash"></i> </button>
                                                         </div>
                                                 </div>
                                                 <div class="row">
@@ -110,9 +117,11 @@
                                                 </div>
                                                 <div class="row">
                                                         <div class="col-9"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="0">0</button></div>
+                                                                        data-action="append" data-value="0">0</button>
+                                                        </div>
                                                         <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value=".">&#8226</button>
+                                                                        data-action="append"
+                                                                        data-value=".">&#8226</button>
                                                         </div>
                                                 </div>
 

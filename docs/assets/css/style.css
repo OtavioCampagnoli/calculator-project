@@ -24,13 +24,14 @@
 
 #display {
     text-align: right;
+    margin-top: 5%;
 }
 
-@media (max-width: 300px){
+@media (max-width: 300px) {
 
     .btn {
         pointer-events: none;
         opacity: 0.5;
     }
-    
+
 }

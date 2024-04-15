@@ -19,6 +19,9 @@ buttons.forEach((button) => {
       case 'backspace':
         backspace();
         break;
+      case 'clearHistory':
+        clearHistory();
+        break;
       default:
         break;
     }
