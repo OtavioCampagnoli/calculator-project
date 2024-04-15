@@ -31,104 +31,118 @@
                                         </div>
                                         <div class="card-body">
                                                 <div class="row">
-                                                        <div class="col-9">
-                                                                <div class="input-group input-group-md">
-                                                                        <div class="input-group-prepend">
-                                                                                <span class="input-group-text"
-                                                                                        id="inputGroup-sizing-sm"
-                                                                                        style="font-weight: bold;"><img
-                                                                                                src="./docs/assets/images/history.png"
-                                                                                                alt="History Icon"
-                                                                                                style="height: 16px; margin-right: 6px;">History</span>
-                                                                        </div>
-                                                                        <input id="display-history" type="text"
-                                                                                class="form-control"
-                                                                                aria-label="Sizing example input"
-                                                                                aria-describedby="inputGroup-sizing-sm"
-                                                                                disabled style="font-weight: bold;">
+                                                        <div class="col-3 offset-9">
+                                                                <button class="btn btn-block btn-primary"
+                                                                        id="toogle-on-history"
+                                                                        data-action="toggleHistoryAction" data-value="1"
+                                                                        style="display: none""><i class=" fas
+                                                                        fa-toggle-on"></i>
+                                                                </button>
+                                                        </div>
+                                                        <div class="col-3 offset-9">
+                                                                <button class="btn btn-block btn-primary"
+                                                                        id="toogle-off-history"
+                                                                        data-action="toggleHistoryAction"
+                                                                        data-value="0"><i
+                                                                                class=" fas fa-toggle-off"></i>
+                                                                </button>
+                                                        </div>
+                                                </div>
+                                                <div class="row" id="historyContainer"">
+                                                        <div class=" col-9">
+                                                        <div class="input-group input-group-md">
+                                                                <div class="input-group-prepend">
+                                                                        <span class="input-group-text"
+                                                                                id="inputGroup-sizing-sm"
+                                                                                style="font-weight: bold;"><i
+                                                                                        class="fas fa-history"></i></span>
                                                                 </div>
-                                                        </div>
-                                                        <div class="col-3">
-                                                                <button data-action="clearHistory" id="trash-history"
-                                                                        class="btn-danger btn">
-                                                                        <i class="fas fa-trash"></i> </button>
-                                                        </div>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col">
-                                                                <input type="text" placeholder="0" id="display"
-                                                                        class="form-control mb-3"
-                                                                        style="font-weight: bold;" disabled>
+                                                                <input id="display-history" type="text"
+                                                                        class="form-control"
+                                                                        aria-label="Sizing example input"
+                                                                        aria-describedby="inputGroup-sizing-sm" disabled
+                                                                        style="font-weight: bold;">
                                                         </div>
                                                 </div>
-                                                <div class="row">
-                                                        <div class="col"><button class="btn btn-secondary btn-block"
-                                                                        data-action="clear">C</button></div>
-                                                        <div class="col"><button class="btn btn-secondary btn-block"
-                                                                        data-action="append"
-                                                                        data-value="/">&#xF7;</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-secondary btn-block"
-                                                                        data-action="append" data-value="*">*</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-secondary btn-block"
-                                                                        data-action="backspace">&#9003</button></div>
+                                                <div class="col-3">
+                                                        <button data-action="clearHistory" id="trash-history"
+                                                                class="btn-danger btn">
+                                                                <i class="fas fa-trash"></i> </button>
                                                 </div>
-                                                <div class="row">
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="7">7</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="8">8</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="9">9</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="-">-</button>
-                                                        </div>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="6">6</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="5">5</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="4">4</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="+">+</button>
-                                                        </div>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="3">3</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="2">2</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="1">1</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="calculate">=</button></div>
-                                                </div>
-                                                <div class="row">
-                                                        <div class="col-9"><button class="btn btn-primary btn-block"
-                                                                        data-action="append" data-value="0">0</button>
-                                                        </div>
-                                                        <div class="col"><button class="btn btn-primary btn-block"
-                                                                        data-action="append"
-                                                                        data-value=".">&#8226</button>
-                                                        </div>
-                                                </div>
-
                                         </div>
+                                        <div class="row">
+                                                <div class="col">
+                                                        <input type="text" placeholder="0" id="display"
+                                                                class="form-control mb-3" style="font-weight: bold;"
+                                                                disabled>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col"><button class="btn btn-secondary btn-block"
+                                                                data-action="clear">C</button></div>
+                                                <div class="col"><button class="btn btn-secondary btn-block"
+                                                                data-action="append" data-value="/">&#xF7;</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-secondary btn-block"
+                                                                data-action="append" data-value="*">*</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-secondary btn-block"
+                                                                data-action="backspace">&#9003</button></div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="7">7</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="8">8</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="9">9</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="-">-</button>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="6">6</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="5">5</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="4">4</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="+">+</button>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="3">3</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="2">2</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="1">1</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="calculate">=</button></div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-9"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value="0">0</button>
+                                                </div>
+                                                <div class="col"><button class="btn btn-primary btn-block"
+                                                                data-action="append" data-value=".">&#8226</button>
+                                                </div>
+                                        </div>
+
                                 </div>
                         </div>
                 </div>
+        </div>
         </div>
 
 
