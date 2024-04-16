@@ -14,6 +14,10 @@
 
 - [X] Fix bug to add a number after calculate (Improving user experience).
 
+- [X] Toggle History;
+
+- [X] Improved error handling and user input validation;
+
 - [X] Implementation of shortcut keys for common actions.
 
 ### Additional Features to Consider
