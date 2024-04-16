@@ -14,9 +14,10 @@
 
 - [X] Fix bug to add a number after calculate (Improving user experience).
 
+- [X] Implementation of shortcut keys for common actions.
+
 ### Additional Features to Consider
 
-- [ ] Implementation of shortcut keys for common actions.
 - [ ] UI enhancements, such as support for themes or customization options.
 - [ ] Support for more advanced operations, such as square root, exponentiation, etc.
 - [ ] Implementation of scientific functions for more complex calculations.

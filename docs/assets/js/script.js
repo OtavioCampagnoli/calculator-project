@@ -33,7 +33,15 @@ buttons.forEach((button) => {
 
 function appendToDisplay(value) {
 
-  if (isCalculated && isOperator(value)) {
+  if (isSpecialCharacter(value) || isAlphabet(value)) {
+    return;
+  }
+
+  if (isOperator(value) && !haveANumberFirst()) {
+    return;
+  }
+
+  if (isCalculated && (isOperator(value) || isSpecialCharacter(value))) {
     isCalculated = false;
   }
 
@@ -93,14 +101,17 @@ function calculate() {
   if (!expression) {
     updateValueScreen(0);
     return;
+  } else if (!alreadyHaveAnOperator()) {
+    alert("You need to add an operator!");
   }
+  else {
+    const result = eval(expression);
+    const expressionWithResult = `${expression} = ${result}`;
+    saveTheHistory(expressionWithResult);
+    updateValueScreen(result);
 
-  const result = eval(expression);
-  const expressionWithResult = `${expression} = ${result}`;
-  saveTheHistory(expressionWithResult);
-  updateValueScreen(result);
-
-  isCalculated = true;
+    isCalculated = true;
+  }
 }
 
 function isDivisionByZero(numerator, denominator, operator) {
@@ -190,3 +201,45 @@ function hiddenHistory() {
   let containerHistory = document.getElementById("historyContainer");
   containerHistory.style.display = "none";
 }
+
+function isNumber(value) {
+  const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  return numbers.includes(value);
+}
+
+function isSpecialCharacter(value) {
+  var regex = /[!@#$%^&()_\\[\]{};':"\\|,<>\?]/;
+
+  // Test the value against the regular expression
+  return regex.test(value);
+}
+
+function isAlphabet(value) {
+  var regex = /^[a-zA-Z]+$/;
+  return regex.test(value);
+}
+
+function validationShortcut(value) {
+  try {
+    if (value == "Enter" || value == "=") {
+      calculate();
+    }
+    else {
+      appendToDisplay(value);
+    }
+  } catch (error) {
+    alert("Error:" + error);
+  }
+}
+
+document.body.addEventListener("keypress", function (event) {
+  validationShortcut(event.key);
+});
+
+document.body.addEventListener("keydown", function (event) {
+  if (event.key == "Backspace") {
+    backspace();
+  } else if (event.key == "Escape") {
+    clearDisplay();
+  }
+})
