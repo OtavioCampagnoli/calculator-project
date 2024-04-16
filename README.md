@@ -12,7 +12,7 @@
 
 - [X] Refactored script (212 to 150 lines);
 
-- [X] Fix bug to add a number after calculate (Improving user experience).
+- [X] Fix bug to add a number after to calculate (Improving user experience).
 
 - [X] Add Toggle History;
 
